@@ -122,6 +122,8 @@
   "categoryRootTuber": "محصول جذري",
   "categoryVegetable": "خضروات",
   "categoryOilseed": "محصول زيتي",
+  "categoryFruitNut": "فواكه ومكسرات",
+  "categoryOther": "محصول آخر",
   "roleNitrogenFixer": "يثبّت النيتروجين",
   "roleHeavyFeeder": "يستهلك غذاءً كثيرًا",
   "roleLightFeeder": "يستهلك غذاءً قليلًا",

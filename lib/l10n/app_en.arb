@@ -147,6 +147,8 @@
   "categoryRootTuber": "Root crop",
   "categoryVegetable": "Vegetable",
   "categoryOilseed": "Oilseed",
+  "categoryFruitNut": "Fruit & nut",
+  "categoryOther": "Other crop",
   "roleNitrogenFixer": "fixes nitrogen",
   "roleHeavyFeeder": "heavy feeder",
   "roleLightFeeder": "light feeder",

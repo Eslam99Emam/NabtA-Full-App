@@ -5,7 +5,7 @@ typedef ValueRange = ({double min, double max});
 
 enum CropRole { nitrogenFixer, heavyFeeder, lightFeeder }
 
-enum CropCategory { cereal, legume, rootTuber, vegetable, oilseed }
+enum CropCategory { cereal, legume, rootTuber, vegetable, oilseed, fruitNut, other }
 
 class Crop {
   const Crop({

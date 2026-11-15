@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:latlong2/latlong.dart';
@@ -16,10 +17,7 @@ enum PlannerStatus { idle, loading, success, error }
 /// Holds the form, validates it, and loads rotation plans.
 class PlannerController extends ChangeNotifier {
   // Private named parameters: callers still pass `repository:` / `storage:`.
-  PlannerController({
-    required this._repository,
-    required this._storage,
-  });
+  PlannerController({required this._repository, required this._storage});
 
   final RotationRepository _repository;
   final InputStorage _storage;
@@ -48,14 +46,15 @@ class PlannerController extends ChangeNotifier {
   LandInput? get submittedInput => _submittedInput;
 
   InputValidation get validation => InputValidator.validate(
-        latitudeText: _latitudeText,
-        longitudeText: _longitudeText,
-        areaText: _areaText,
-        priorities: _priorities,
-      );
+    latitudeText: _latitudeText,
+    longitudeText: _longitudeText,
+    areaText: _areaText,
+    priorities: _priorities,
+  );
 
   /// Errors stay hidden until the first submit attempt.
-  InputValidation get visibleValidation => _showErrors ? validation : const InputValidation();
+  InputValidation get visibleValidation =>
+      _showErrors ? validation : const InputValidation();
 
   LatLng? get location {
     final parsed = InputValidator.parseLocation(_latitudeText, _longitudeText);
@@ -76,9 +75,11 @@ class PlannerController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setLatitudeText(String value) => _setCoordinateText(value, isLatitude: true);
+  void setLatitudeText(String value) =>
+      _setCoordinateText(value, isLatitude: true);
 
-  void setLongitudeText(String value) => _setCoordinateText(value, isLatitude: false);
+  void setLongitudeText(String value) =>
+      _setCoordinateText(value, isLatitude: false);
 
   /// A pasted "lat, lng" pair in either field fills both.
   void _setCoordinateText(String value, {required bool isLatitude}) {
@@ -111,7 +112,9 @@ class PlannerController extends ChangeNotifier {
   }
 
   void setPh(double value) {
-    final clamped = value.clamp(InputLimits.minPh, InputLimits.maxPh).toDouble();
+    final clamped = value
+        .clamp(InputLimits.minPh, InputLimits.maxPh)
+        .toDouble();
     _ph = NumberInput.roundTo(clamped, 1);
     _phAssumed = false;
     _changed();
@@ -132,6 +135,7 @@ class PlannerController extends ChangeNotifier {
 
   /// Validates and, when valid, starts loading. Returns whether it started.
   bool submit() {
+    // log("plans.toString()");
     _showErrors = true;
     final point = location;
     final area = areaM2;
@@ -147,6 +151,12 @@ class PlannerController extends ChangeNotifier {
       phAssumed: _phAssumed,
       priorities: _priorities,
     );
+    log(
+      "plans.toString() ${!validation.isValid} | ${point == null} | ${area == null}",
+    );
+    log(
+      "2 plans.toString() ${_submittedInput} | ${_requestId} | ${area == null}",
+    );
     unawaited(_load());
     return true;
   }
@@ -160,6 +170,7 @@ class PlannerController extends ChangeNotifier {
     _status = PlannerStatus.loading;
     notifyListeners();
     try {
+      log("Starting Recommendation");
       final strategies = await _repository.recommend(input);
       if (requestId != _requestId) return;
       _strategies = strategies;
@@ -173,13 +184,17 @@ class PlannerController extends ChangeNotifier {
 
   void _changed() {
     notifyListeners();
-    unawaited(_storage.write(StoredInputs(
-      latitudeText: _latitudeText,
-      longitudeText: _longitudeText,
-      areaText: _areaText,
-      ph: _ph,
-      phAssumed: _phAssumed,
-      priorities: _priorities,
-    )));
+    unawaited(
+      _storage.write(
+        StoredInputs(
+          latitudeText: _latitudeText,
+          longitudeText: _longitudeText,
+          areaText: _areaText,
+          ph: _ph,
+          phAssumed: _phAssumed,
+          priorities: _priorities,
+        ),
+      ),
+    );
   }
 }

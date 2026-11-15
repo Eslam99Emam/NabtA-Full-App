@@ -758,6 +758,18 @@ abstract class AppLocalizations {
   /// **'Oilseed'**
   String get categoryOilseed;
 
+  /// No description provided for @categoryFruitNut.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruit & nut'**
+  String get categoryFruitNut;
+
+  /// No description provided for @categoryOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other crop'**
+  String get categoryOther;
+
   /// No description provided for @roleNitrogenFixer.
   ///
   /// In en, this message translates to:

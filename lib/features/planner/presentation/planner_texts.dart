@@ -57,6 +57,8 @@ String categoryName(AppLocalizations l10n, CropCategory category) => switch (cat
       CropCategory.rootTuber => l10n.categoryRootTuber,
       CropCategory.vegetable => l10n.categoryVegetable,
       CropCategory.oilseed => l10n.categoryOilseed,
+      CropCategory.fruitNut => l10n.categoryFruitNut,
+      CropCategory.other => l10n.categoryOther,
     };
 
 String roleName(AppLocalizations l10n, CropRole role) => switch (role) {

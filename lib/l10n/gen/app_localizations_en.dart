@@ -422,6 +422,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get categoryOilseed => 'Oilseed';
 
   @override
+  String get categoryFruitNut => 'Fruit & nut';
+
+  @override
+  String get categoryOther => 'Other crop';
+
+  @override
   String get roleNitrogenFixer => 'fixes nitrogen';
 
   @override

@@ -432,6 +432,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get categoryOilseed => 'محصول زيتي';
 
   @override
+  String get categoryFruitNut => 'فواكه ومكسرات';
+
+  @override
+  String get categoryOther => 'محصول آخر';
+
+  @override
   String get roleNitrogenFixer => 'يثبّت النيتروجين';
 
   @override

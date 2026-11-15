@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:nabta/core/theme/spacing.dart';
 import 'package:nabta/core/utils/app_format.dart';
 import 'package:nabta/core/utils/motion.dart';
-import 'package:nabta/core/widgets/content_layout.dart';
 import 'package:nabta/features/planner/domain/input_validation.dart';
 import 'package:nabta/features/planner/presentation/input/widgets/farm_size_step.dart';
 import 'package:nabta/features/planner/presentation/input/widgets/location_step.dart';

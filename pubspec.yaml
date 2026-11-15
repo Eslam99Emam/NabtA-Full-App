@@ -1,0 +1,40 @@
+﻿name: nabta
+description: "NabtA - a calm, offline crop-rotation planner for farmers and land owners."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  provider: ^6.1.2
+  shared_preferences: ^2.3.3
+  flutter_map: ^8.1.1
+  latlong2: 0.10.1
+  geolocator: ^14.0.0
+  google_fonts: 9.0.0
+  material_ui: ^1.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 6.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    # Brand Inter files (from NabtA-Fonts). google_fonts picks these up
+    # automatically, so English UI text works offline from the first launch.
+    - assets/google_fonts/
+  fonts:
+    # Geometric face closest to the hand-built NabtA lettering; wordmark only.
+    - family: Adventor
+      fonts:
+        - asset: assets/fonts/texgyreadventor-bold.otf
+          weight: 700
